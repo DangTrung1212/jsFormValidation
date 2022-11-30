@@ -46,8 +46,15 @@
   <script>
     const validate = new Validator({
       form:"#form-1",
-      rules: [Validator.isRequired("#fullname"), Validator.isEmail("#email"), Validator.isPassword("#password"),
-       Validator.isConfPassword("#password_confirmation", "#password"),]
+      invalidClass:"invalid",
+      errorSelector: ".form-message",
+      rules: 
+      [Validator.isRequired("#fullname"),
+       Validator.isRequired("#email"),
+       Validator.isEmail("#email"),
+       Validator.isPassword("#password"),
+       Validator.isRequired("#password"),
+       Validator.isConfirmPassword("#password_confirmation", "#password"),]
     })
   </script>
   </div>
