@@ -1,24 +1,38 @@
 class Validator {
     constructor(options) {
         this.formElement = document.querySelector(options.form)
-        this.rules = options.rules
         this.invalidClass = options.invalidClass
         this.errorSelector = options.errorSelector
+        this.selectorRules = this.getSelectorRule(options.rules)
         this.perform()
     }
-    /* Todo: save rule become an array, validate each rule by loop through rules, break if errorMeasage   */
+    // Lấy hết rule của từng element, xử lý mảng các obj thành 1 obj selectorRule {element:[rule]}
+    getSelectorRule(rawRules) {
+        const selectorRules = {}
+        rawRules.forEach((rule)=>{
+            if (Array.isArray(selectorRules[rule.selector])) {
+                selectorRules[rule.selector].push(rule.test)
+            } else {
+                selectorRules[rule.selector] = [rule.test]
+            }
+        })
+        return selectorRules
+        
+
+    }
     // static method does not invoke constructor and no context
     // validate by getting rule and selector form rules, set/unset innerText and add/remove classList to error <span>
-    validate(inputElement, rule) {
-        console.log(rule)
-        let errorMessage = rule.test(inputElement.value)
-        let errorElement = inputElement.parentElement.querySelector(this.errorSelector)
-                  
-        if (errorMessage) {
-            errorElement.innerText = errorMessage
-            inputElement.parentElement.classList.add(this.invalidClass)
-        } else {
-            this.removeInvalidClass(errorElement)
+    validate(inputElement, rules) {
+        for (let testRule of rules) {
+            let errorMessage = testRule(inputElement.value) 
+            let errorElement = inputElement.parentElement.querySelector(this.errorSelector)      
+            if (errorMessage) {
+                errorElement.innerText = errorMessage
+                inputElement.parentElement.classList.add(this.invalidClass)
+                break
+            } else {
+                this.removeInvalidClass(errorElement)
+            }
         }
     }
     removeInvalidClass(errorElement) {
@@ -26,19 +40,31 @@ class Validator {
         errorElement.parentElement.classList.remove(this.invalidClass)
         errorElement.innerText= ""
     }
+    handleSubmit(e) {
+        e.preventDefault()
+        for (let key in this.selectorRules) {
+            let inputElement = document.querySelector(key)
+            this.validate(inputElement,this.selectorRules[key])
+        }
+        
+
+    }
     // perform validation by loop through rules and selector
     perform() {
-    if (this.formElement) {
-        this.rules.forEach((rule)=>{
-            let inputElement = this.formElement.querySelector(rule.selector)
-            if (inputElement) {
-                inputElement.addEventListener("blur", ()=>this.validate(inputElement,rule)) 
-                inputElement.onfocus = () => this.removeInvalidClass(inputElement.parentElement.querySelector(this.errorSelector))
-            }
-        })
-    }    
-}
-
+        if (this.formElement) {
+            if (this.selectorRules &&  Object.keys(this.selectorRules).length) {
+                this.formElement.onsubmit = (e) => {this.handleSubmit(e)}
+                Object.keys(this.selectorRules).forEach((key)=>{
+                    let inputElement = this.formElement.querySelector(key)
+                    if (inputElement) {
+                        inputElement.addEventListener("blur", ()=>this.validate(inputElement,this.selectorRules[key])) 
+                        inputElement.onfocus = () => this.removeInvalidClass(inputElement.parentElement.querySelector(this.errorSelector))
+                    }
+                })
+            }    
+        }
+    }
+    
 //    Rules method
    static isRequired(selector) {
         return {
