@@ -54,7 +54,11 @@
        Validator.isEmail("#email"),
        Validator.isPassword("#password"),
        Validator.isRequired("#password"),
-       Validator.isConfirmPassword("#password_confirmation", "#password"),]
+       Validator.isConfirmPassword("#password_confirmation", "#password")],
+      submit: function(data) {
+        console.log(data)
+        return data
+      }
     })
   </script>
   </div>

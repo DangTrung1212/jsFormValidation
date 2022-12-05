@@ -4,6 +4,7 @@ class Validator {
         this.invalidClass = options.invalidClass
         this.errorSelector = options.errorSelector
         this.selectorRules = this.getSelectorRule(options.rules)
+        this.submit = options.submit
         this.perform()
     }
     // Lấy hết rule của từng element, xử lý mảng các obj thành 1 obj selectorRule {element:[rule]}
@@ -46,6 +47,15 @@ class Validator {
             let inputElement = document.querySelector(key)
             this.validate(inputElement,this.selectorRules[key])
         }
+        const errorElements = document.querySelectorAll(this.errorSelector) 
+        if (errorElements && Array.from(errorElements).every((errorElement)=>errorElement.innerText==='')) {
+            const dataInputs = document.querySelectorAll("[name]")
+            const data = Array.from(dataInputs).reduce((data, input)=>({...data, [input.name] : input.value
+
+            }), {})
+            this.submit(data)
+        }
+
         
 
     }
