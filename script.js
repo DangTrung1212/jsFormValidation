@@ -10,6 +10,6 @@ const validate = new Validator({
         Validator.isRequired("#email"),
         Validator.isEmail("#email", "Đây phải là email"),],
         submit: function(data) {
-    console.log(data)
+    localStorage.setItem("data", JSON.stringify(data))
     }
   })

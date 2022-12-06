@@ -21,15 +21,17 @@
         <input id="email" name="email" type="text" placeholder="Enter your email" class="form-control">
         <span class="form-message"></span>
       </div>
-      <div class="form-group">
-        <label for="firstname" class="form-label">First Name</label>
-        <input id="firstname" name="firstname" type="text" placeholder="Enter your first name" class="form-control">
-        <span class="form-message"></span>
-      </div>
-      <div class="form-group">
-        <label for="lastname" class="form-label">Last Name</label>
-        <input id="lastname" name="lastname" type="text" placeholder="Enter your last name" class="form-control">
-        <span class="form-message"></span>
+      <div class="form-username">
+        <div class="form-group">
+            <label for="firstname" class="form-label">First Name</label>
+            <input id="firstname" name="firstname" type="text" placeholder="Enter your first name" class="form-control">
+            <span class="form-message"></span>
+        </div>
+        <div class="form-group">
+            <label for="lastname" class="form-label">Last Name</label>
+            <input id="lastname" name="lastname" type="text" placeholder="Enter your last name" class="form-control">
+            <span class="form-message"></span>
+        </div>
       </div>
       <div class="form-group">
         <label for="business" class="form-label">Business</label>
@@ -38,7 +40,7 @@
           <option value="Restaurants">Restaurants</option>
           <option value="Pet Shops" selected>Pet Shops</option>
           <option value="Fashion Bontique">Fashion Bontique</option>
-        <span class="form-message"></span>
+        </select>
       </div>
       <div class="form-group">
         <label for="description" class="form-label">Description</label>
@@ -46,6 +48,7 @@
         <span class="form-message"></span>
       </div>
       <button class="form-submit">Submit</button>
+      <button class="form-cancel">Cancel</button>
     </form>
   <script src="script.js" type="module"></script>
   </div>
