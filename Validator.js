@@ -27,7 +27,6 @@ class Validator {
         for (let testRule of rules) {
             let errorMessage = testRule(inputElement.value) 
             let formGroup = this.handleNestedXpath(inputElement) 
-            console.log("a",formGroup)
             let errorElement = formGroup.querySelector(this.errorSelector)    
             if (errorMessage) {
                 errorElement.innerText = errorMessage
@@ -48,7 +47,6 @@ class Validator {
         }
     }   
     removeInvalidClass(errorElement) {
-        console.log(errorElement)
         errorElement.parentElement.classList.remove(this.invalidClass)
         errorElement.innerText= ""
     }
@@ -59,10 +57,11 @@ class Validator {
             let inputElement = document.querySelector(key)
             this.validate(inputElement,this.selectorRules[key])
         }
-        const errorElements = document.querySelectorAll(this.errorSelector) 
+        const errorElements = this.formElement.querySelectorAll(this.errorSelector) 
         if (errorElements && Array.from(errorElements).every((errorElement)=>errorElement.innerText==='')) { // check xem mọi thẻ error đều không có lỗi
-            const dataInputs = document.querySelectorAll("[name]")
-            const data = Array.from(dataInputs).reduce((data, input)=>({...data, [input.name] : input.value.trim()
+            const dataInputs = this.formElement.querySelectorAll("[name]")
+            console.log(dataInputs)
+            const data = Array.from(dataInputs).reduce((data, input)=>({...data, [input.name] : input.value
 
             }), {})
             if (typeof(this.submit) === 'function') {

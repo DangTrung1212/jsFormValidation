@@ -13,14 +13,17 @@ html{
   border: 1px solid;
   margin-top: 2rem;
 }
+.form-group-name {
+  display :flex;
+}
 .form-group {
   text-align: left;
   display: flex;
   flex-direction: column;
-  width: auto;
   align-items: stretch;
+  padding: 0.5rem 0.5rem;
 }
-.form-username {
-  display: flex;
-  align-content: stretch;
+
+.form-group-name .form-group {
+  width: 50%;
 }
