@@ -5,7 +5,7 @@ class Validator {
         this.errorSelector = options.errorSelector
         this.selectorRules = this.getSelectorRule(options.rules)
         this.submit = options.submit
-        this.perform()
+        this.main()
     }
     // Lấy hết rule của từng element, xử lý mảng các obj thành 1 obj selectorRule {element:[rule]}
     getSelectorRule(rawRules) {
@@ -72,7 +72,7 @@ class Validator {
         }
     }
     // perform validation by loop through rules and selector
-    perform() {
+    main() {
         if (this.formElement) {
             if (this.selectorRules &&  Object.keys(this.selectorRules).length) {
                 this.formElement.onsubmit = (e) => {this.handleSubmit(e)}
