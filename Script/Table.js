@@ -1,6 +1,6 @@
 // const table = new Table({
 //     data : data,
-//     parent_element :
+//     parent_element : ""
 // })
 // const data = [{
 //     email : "trungdang@ga.co",
