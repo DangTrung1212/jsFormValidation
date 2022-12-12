@@ -1,4 +1,4 @@
-import Validator from "./Validator.js";
+import Validator from "./Validator";
 const validate = new Validator({
     form:"#form-1",
     invalidClass:"invalid",
