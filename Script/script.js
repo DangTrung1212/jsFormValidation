@@ -1,4 +1,4 @@
-import Validator from "./Validator";
+import Validator from "./Validator.js";
 
 console.log("1111")
 const validate = new Validator({
