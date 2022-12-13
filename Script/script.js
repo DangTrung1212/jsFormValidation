@@ -12,8 +12,11 @@ const validate = new Validator({
         Validator.isRequired("#email"),
         Validator.isEmail("#email", "Đây phải là email")
     ],
-        submit: function(data) {
-    localStorage.setItem("data", JSON.stringify(data))
-    console.log(data)
+    submit: function(data) {
+        let localData = JSON.parse(localStorage.getItem("userData"))
+        let userData =  localData ? localData : []
+        userData.push(data)
+        localStorage.setItem("userData", JSON.stringify(userData))
+        console.log(data)
     }
   })
