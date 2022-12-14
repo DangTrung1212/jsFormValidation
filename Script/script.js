@@ -1,6 +1,8 @@
 import Validator from "./Validator.js";
 
-console.log("1111")
+const $ = document.querySelector.bind(document)
+const $$ = document.querySelectorAll.bind(document)
+
 const validate = new Validator({
     form:"#form-1",
     invalidClass:"invalid",
@@ -13,10 +15,16 @@ const validate = new Validator({
         Validator.isEmail("#email", "Đây phải là email")
     ],
     submit: function(data) {
+        // can chinh lai logic cho cancel button
         let localData = JSON.parse(localStorage.getItem("userData"))
         let userData =  localData ? localData : []
         userData.push(data)
         localStorage.setItem("userData", JSON.stringify(userData))
         console.log(data)
     }
-  })
+  }
+  )
+$(".form-cancel").onclick = (e) => {
+    window.location.href = "./table.html"
+}
+

@@ -8,6 +8,8 @@
 <body>
     <script src="./Script/Table.js"></script>
     <script>
+
+        const data = JSON.parse(localStorage.getItem("userData"))
         const table = new Table({
             userData : data,
             parentElement : "body",

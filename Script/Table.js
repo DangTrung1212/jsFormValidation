@@ -1,18 +1,4 @@
-// const table = new Table({
-//     data : data,
-//     parent_element : ""
-// })
-const data = [{
-    email : "trungdang@ga.co",
-    name: "trung dang"
-},{
-    email : "trungdang@ga.co",
-    name: "trung dang"
-}]
-const option = {
-    userData : data,
-    parentElement: ""
-}
+
 class Table {
     constructor(option) {
         this.userData = option.userData
@@ -44,6 +30,7 @@ class Table {
                 </tbody>
             </table>
             `
+            console.log("aa")
             this.parentElement.querySelector("table").classList.add(this.className)
         }
     }

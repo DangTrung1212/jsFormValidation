@@ -63,7 +63,8 @@ class Validator {
             console.log(dataInputs)
             const data = Array.from(dataInputs).reduce((data, input)=>({...data, [input.name] : input.value
 
-            }), {})
+            }), {}
+            )
             if (typeof(this.submit) === 'function') {
                 this.submit(data)
             } else {
