@@ -1,10 +1,10 @@
-import Validator from "./Validator.js";
+import Validator from "../Class/Validator.js";
 
 const $ = document.querySelector.bind(document)
-const $$ = document.querySelectorAll.bind(document)
-
+// const $$ = document.querySelectorAll.bind(document)
 const validate = new Validator({
     form:"#form-1",
+    formGroupClassName: "form-group",
     invalidClass:"invalid",
     errorSelector: ".form-message",
     rules: 
@@ -24,7 +24,7 @@ const validate = new Validator({
     }
   }
   )
-$(".form-cancel").onclick = (e) => {
+$(".form-cancel").onclick = () => {
     window.location.href = "./table.html"
 }
 

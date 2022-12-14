@@ -1,6 +1,7 @@
 class Validator {
     constructor(options) {
         this.formElement = document.querySelector(options.form)
+        this.formGroupClassName = options.formGroupClassName
         this.invalidClass = options.invalidClass
         this.errorSelector = options.errorSelector
         this.selectorRules = this.getSelectorRule(options.rules)
@@ -40,7 +41,7 @@ class Validator {
     // xử lý nested xpath 
     handleNestedXpath(inputElement) {
         let parentElement = inputElement.parentElement 
-        if (parentElement.classList.contains("form-group")) {
+        if (parentElement.classList.contains(this.formGroupClassName)) {
             return parentElement
         } else {
             return this.handleNestedXpath(parentElement)
