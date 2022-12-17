@@ -20,11 +20,12 @@ const validate = new Validator({
         let userData =  localData ? localData : []
         userData.push(data)
         localStorage.setItem("userData", JSON.stringify(userData))
-        console.log(data)
+        window.location.href = "./table.html"
     }
   }
   )
-$(".form-cancel").onclick = () => {
+$(".form-cancel").onclick = event => {
+    event.preventDefault()
     window.location.href = "./table.html"
 }
 

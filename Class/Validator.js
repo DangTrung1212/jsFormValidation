@@ -1,4 +1,4 @@
-class Validator {
+export default class Validator {
     constructor(options) {
         this.formElement = document.querySelector(options.form)
         this.formGroupClassName = options.formGroupClassName
@@ -126,4 +126,3 @@ class Validator {
         } 
     }
 }
-export default Validator
